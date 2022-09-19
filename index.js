@@ -17,6 +17,8 @@ let books = [
     }
 ];
 
+getData();
+
 let bookList = document.querySelector('.bookList');
 
 function displayBook(){
@@ -48,21 +50,33 @@ function removeBooks(){
         let btnIndex = removebtn.indexOf(btn);
         books.splice(btnIndex, 1)
         displayBook();
+        updateLocalStorage ();
       });
     })
-    console.log(removebtn);
 }
+
 submit.addEventListener('click', addBooks=>{
  let title1 = title.value;
  let author2=author.value;
- 
- console.log(title1);
- console.log(author2);
  books.push(book={
     title:title1,
     author:author2
 });
 displayBook();
-console.log(books);
 removeBooks();
+updateLocalStorage();
 });
+
+function updateLocalStorage () {
+    const localdata = JSON.stringify(books);
+    localStorage.setItem('localdata', localdata);
+    console.log(localdata);
+}
+
+function getData () {
+    const localdata = localStorage.getItem('localdata');
+    const dataStored = JSON.parse(localdata);
+    if(dataStored){
+    books=dataStored;
+    }
+}
