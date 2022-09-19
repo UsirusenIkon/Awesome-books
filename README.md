@@ -54,6 +54,15 @@
    - Twitter: [@Usirusen_Ikon](https://twitter.com/Usirusen_Ikon)
    - LinkedIn: [Usirusen Ikon](https://www.linkedin.com/in/usirusen-ikon-775855174/)
 
+   👤 **Voicu FLorin**
+
+   - GitHub: [@vflorin1995](https://github.com/vflorin1995)
+   - Twitter: [@vflorin1995](https://twitter.com/vflorin1995)
+
+   👤 **JUHAR YIMER**
+
+   - GitHub: [@vflorin1995](https://github.com/juaryimami)
+
 ## 🤝 Contributing
    - Contributions, issues, and feature requests are welcome!
    - Feel free to check the [issues](https://github.com/UsirusenIkon/Awesome-books/issues) page.

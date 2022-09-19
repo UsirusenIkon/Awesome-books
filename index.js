@@ -33,18 +33,6 @@ function updateLocalStorage() {
   localStorage.setItem('localdata', localdata);
 }
 
-function removeBooks() {
-  const removebtn = Array.from(document.querySelectorAll('.removebtn'));
-  removebtn.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const btnIndex = removebtn.indexOf(btn);
-      books.splice(btnIndex, 1);
-      displayBook();
-      updateLocalStorage();
-    });
-  });
-}
-
 function displayBook() {
   bookList.innerText = '';
   books.forEach((book) => {
@@ -62,7 +50,15 @@ function displayBook() {
 
     bookList.append(title, author, removeBtn, horizontalLine);
   });
-  removeBooks();
+  const removebtn = Array.from(document.querySelectorAll('.removebtn'));
+  removebtn.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const btnIndex = removebtn.indexOf(btn);
+      books.splice(btnIndex, 1);
+      displayBook();
+    });
+    updateLocalStorage();
+  });
 }
 displayBook();
 
@@ -74,6 +70,5 @@ submit.addEventListener('click', () => {
     author: author2,
   });
   displayBook();
-  removeBooks();
   updateLocalStorage();
 });
