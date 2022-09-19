@@ -37,13 +37,19 @@ function displayBook(){
         bookList.append(title, author, removeBtn, horizontalLine);
     
     });
+    removeBooks();
 }
+displayBook();
 
 function removeBooks(){
     let removebtn=Array.from(document.querySelectorAll('.removebtn'));
-    removebtn.addEventListener('click',remove=>{
-
-    });
+    removebtn.forEach((btn) => {
+      btn.addEventListener('click',() => {
+        let btnIndex = removebtn.indexOf(btn);
+        books.splice(btnIndex, 1)
+        displayBook();
+      });
+    })
     console.log(removebtn);
 }
 submit.addEventListener('click', addBooks=>{
