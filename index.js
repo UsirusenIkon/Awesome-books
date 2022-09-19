@@ -29,6 +29,7 @@ function displayBook(){
         author.innerText = book.author;
     
         let removeBtn = document.createElement('button');
+        removeBtn.className="removebtn";
         removeBtn.innerText = 'Remove';
     
         let horizontalLine = document.createElement('hr');
@@ -38,7 +39,13 @@ function displayBook(){
     });
 }
 
+function removeBooks(){
+    let removebtn=Array.from(document.querySelectorAll('.removebtn'));
+    removebtn.addEventListener('click',remove=>{
 
+    });
+    console.log(removebtn);
+}
 submit.addEventListener('click', addBooks=>{
  let title1 = title.value;
  let author2=author.value;
@@ -51,4 +58,5 @@ submit.addEventListener('click', addBooks=>{
 });
 displayBook();
 console.log(books);
+removeBooks();
 });
