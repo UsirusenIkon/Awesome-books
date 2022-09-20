@@ -1,41 +1,44 @@
+/* eslint-disable max-classes-per-file */
 const title = document.querySelector('.title');
 const author = document.querySelector('.author');
 const submit = document.querySelector('.submit');
 const bookList = document.querySelector('.bookList');
 
-class standardBook {
+class StandardBook {
   constructor(title, author) {
     this.title = title;
     this.author = author;
   }
 }
 
-class standardBooks {
-  constructor(){
-    this.books=[];
+class StandardBooks {
+  constructor() {
+    this.books = [];
   }
-  addBook(title, author){
-    let p = new standardBook(title, author);
+
+  addBook(title, author) {
+    const p = new StandardBook(title, author);
     this.books.push(p);
     return p;
   }
-  get allBooks(){
+
+  get allBooks() {
     return this.books;
   }
-  removeBook(index){
+
+  removeBook(index) {
     this.books.splice(index, 1);
   }
 }
 
-let initialBook = new standardBooks();
-initialBook.addBook('title1','author1');
-initialBook.addBook('title2','author2');
-initialBook.addBook('title3','author3');
+const initialBook = new StandardBooks();
+initialBook.addBook('title1', 'author1');
+initialBook.addBook('title2', 'author2');
+initialBook.addBook('title3', 'author3');
 
 function getData() {
   const localdata = localStorage.getItem('localdata');
   const dataStored = JSON.parse(localdata);
-  console.log(dataStored);
   if (dataStored) {
     initialBook.books = dataStored;
   }
@@ -49,8 +52,8 @@ function updateLocalStorage() {
 }
 
 function displayBook() {
-  bookList.innerText='';
-  initialBook.allBooks.forEach(standBook => {
+  bookList.innerText = '';
+  initialBook.allBooks.forEach((standBook) => {
     const title = document.createElement('h3');
     title.innerText = standBook.title;
 
@@ -64,7 +67,7 @@ function displayBook() {
     const horizontalLine = document.createElement('hr');
 
     bookList.append(title, author, removeBtn, horizontalLine);
-});
+  });
   const removebtn = Array.from(document.querySelectorAll('.removebtn'));
   removebtn.forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -76,9 +79,9 @@ function displayBook() {
   updateLocalStorage();
 }
 displayBook();
-submit.addEventListener('click',()=>{
-const title1=title.value;
-const author2=author.value;
-initialBook.addBook(title1,author2);
-displayBook();
+submit.addEventListener('click', () => {
+  const title1 = title.value;
+  const author2 = author.value;
+  initialBook.addBook(title1, author2);
+  displayBook();
 });
