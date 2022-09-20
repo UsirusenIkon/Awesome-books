@@ -1,46 +1,64 @@
+/* eslint-disable max-classes-per-file */
 const title = document.querySelector('.title');
 const author = document.querySelector('.author');
 const submit = document.querySelector('.submit');
-let books = [
-  {
-    title: 'title1',
-    author: 'author1',
-  },
-  {
-    title: 'title2',
-    author: 'author2',
-  },
-  {
-    title: 'title3',
-    author: 'author3',
-  },
-];
+const bookList = document.querySelector('.bookList');
+
+class StandardBook {
+  constructor(title, author) {
+    this.title = title;
+    this.author = author;
+  }
+}
+
+class StandardBooks {
+  constructor() {
+    this.books = [];
+  }
+
+  addBook(title, author) {
+    const p = new StandardBook(title, author);
+    this.books.push(p);
+    return p;
+  }
+
+  get allBooks() {
+    return this.books;
+  }
+
+  removeBook(index) {
+    this.books.splice(index, 1);
+  }
+}
+
+const initialBook = new StandardBooks();
+initialBook.addBook('title1', 'author1');
+initialBook.addBook('title2', 'author2');
+initialBook.addBook('title3', 'author3');
 
 function getData() {
   const localdata = localStorage.getItem('localdata');
   const dataStored = JSON.parse(localdata);
   if (dataStored) {
-    books = dataStored;
+    initialBook.books = dataStored;
   }
 }
 
 getData();
 
-const bookList = document.querySelector('.bookList');
-
 function updateLocalStorage() {
-  const localdata = JSON.stringify(books);
+  const localdata = JSON.stringify(initialBook.books);
   localStorage.setItem('localdata', localdata);
 }
 
 function displayBook() {
   bookList.innerText = '';
-  books.forEach((book) => {
+  initialBook.allBooks.forEach((standBook) => {
     const title = document.createElement('h3');
-    title.innerText = book.title;
+    title.innerText = standBook.title;
 
     const author = document.createElement('h4');
-    author.innerText = book.author;
+    author.innerText = standBook.author;
 
     const removeBtn = document.createElement('button');
     removeBtn.className = 'removebtn';
@@ -54,21 +72,16 @@ function displayBook() {
   removebtn.forEach((btn) => {
     btn.addEventListener('click', () => {
       const btnIndex = removebtn.indexOf(btn);
-      books.splice(btnIndex, 1);
+      initialBook.removeBook(btnIndex);
       displayBook();
     });
-    updateLocalStorage();
   });
+  updateLocalStorage();
 }
 displayBook();
-
 submit.addEventListener('click', () => {
   const title1 = title.value;
   const author2 = author.value;
-  books.push({
-    title: title1,
-    author: author2,
-  });
+  initialBook.addBook(title1, author2);
   displayBook();
-  updateLocalStorage();
 });
