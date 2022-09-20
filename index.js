@@ -76,3 +76,9 @@ function displayBook() {
   updateLocalStorage();
 }
 displayBook();
+submit.addEventListener('click',()=>{
+const title1=title.value;
+const author2=author.value;
+initialBook.addBook(title1,author2);
+displayBook();
+});
