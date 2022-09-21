@@ -99,7 +99,7 @@ submit.addEventListener('click', () => {
   displayBook();
 });
 
-//adding stuff
+// adding stuff
 
 const listBtn = document.querySelector('.listBtn');
 const addBtn = document.querySelector('.addBtn');
@@ -110,15 +110,15 @@ const contactMeSection = document.querySelector('.contact-me');
 const bookListSection = document.querySelector('.books');
 
 addBtn.addEventListener('click', () => {
-    addBookSection.classList.remove('displayNone');
-    contactMeSection.classList.add('displayNone');
-    bookListSection.classList.add('displayNone');
+  addBookSection.classList.remove('displayNone');
+  contactMeSection.classList.add('displayNone');
+  bookListSection.classList.add('displayNone');
 });
 
 contactBtn.addEventListener('click', () => {
-    addBookSection.classList.add('displayNone');
-    contactMeSection.classList.remove('displayNone');
-    bookListSection.classList.add('displayNone');
+  addBookSection.classList.add('displayNone');
+  contactMeSection.classList.remove('displayNone');
+  bookListSection.classList.add('displayNone');
 });
 
 listBtn.addEventListener('click', () => {

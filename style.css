@@ -28,6 +28,11 @@ ul {
   list-style: none;
 }
 
+.divider__line {
+  border-left: 2px solid black;
+  height: 20px;
+}
+
 /* nav */
 .nav {
   padding: 1rem;
@@ -43,7 +48,7 @@ ul {
 .form {
   flex-direction: column;
   max-width: 30rem;
-  margin: 0px auto;
+  margin: 0 auto;
 }
 
 .input {
@@ -74,7 +79,8 @@ p {
 
 /* footer */
 footer {
-  position: relative;
+  position: fixed;
+  width: 100%;
   bottom: 0;
 }
 
