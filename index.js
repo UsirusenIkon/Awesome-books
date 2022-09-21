@@ -1,8 +1,8 @@
 /* eslint-disable max-classes-per-file */
+const bookList = document.querySelector('.bookList');
+const submit = document.querySelector('.submit');
 const title = document.querySelector('.title');
 const author = document.querySelector('.author');
-const submit = document.querySelector('.submit');
-const bookList = document.querySelector('.bookList');
 
 class StandardBook {
   constructor(title, author) {
@@ -54,19 +54,29 @@ function updateLocalStorage() {
 function displayBook() {
   bookList.innerText = '';
   initialBook.allBooks.forEach((standBook) => {
+    const containerTAB = document.createElement('div');
+    containerTAB.classList = 'flex space-btw align-center';
+
+    const containerTitleAuthor = document.createElement('div');
+    containerTitleAuthor.classList = 'flex align-center';
+
     const title = document.createElement('h3');
     title.innerText = standBook.title;
 
     const author = document.createElement('h4');
     author.innerText = standBook.author;
 
+    containerTitleAuthor.append(title, author);
+
     const removeBtn = document.createElement('button');
     removeBtn.className = 'removebtn';
     removeBtn.innerText = 'Remove';
 
+    containerTAB.append(containerTitleAuthor, removeBtn);
+
     const horizontalLine = document.createElement('hr');
 
-    bookList.append(title, author, removeBtn, horizontalLine);
+    bookList.append(containerTAB, horizontalLine);
   });
   const removebtn = Array.from(document.querySelectorAll('.removebtn'));
   removebtn.forEach((btn) => {
@@ -79,9 +89,40 @@ function displayBook() {
   updateLocalStorage();
 }
 displayBook();
+
 submit.addEventListener('click', () => {
   const title1 = title.value;
   const author2 = author.value;
   initialBook.addBook(title1, author2);
+  title.value = '';
+  author.value = '';
   displayBook();
+});
+
+//adding stuff
+
+const listBtn = document.querySelector('.listBtn');
+const addBtn = document.querySelector('.addBtn');
+const contactBtn = document.querySelector('.contactBtn');
+
+const addBookSection = document.querySelector('.add-book');
+const contactMeSection = document.querySelector('.contact-me');
+const bookListSection = document.querySelector('.books');
+
+addBtn.addEventListener('click', () => {
+    addBookSection.classList.remove('displayNone');
+    contactMeSection.classList.add('displayNone');
+    bookListSection.classList.add('displayNone');
+});
+
+contactBtn.addEventListener('click', () => {
+    addBookSection.classList.add('displayNone');
+    contactMeSection.classList.remove('displayNone');
+    bookListSection.classList.add('displayNone');
+});
+
+listBtn.addEventListener('click', () => {
+  bookListSection.classList.remove('displayNone');
+  contactMeSection.classList.add('displayNone');
+  addBookSection.classList.add('displayNone');
 });

@@ -7,6 +7,7 @@
 
 body {
   margin: 1rem;
+  position: relative;
 }
 
 h1 {
@@ -42,6 +43,7 @@ ul {
 .form {
   flex-direction: column;
   max-width: 30rem;
+  margin: 0px auto;
 }
 
 .input {
@@ -71,7 +73,32 @@ p {
 }
 
 /* footer */
+footer {
+  position: relative;
+  bottom: 0;
+}
+
 .footer {
   border: 2px solid black;
   padding: 1rem 0;
+}
+
+.displayNone {
+  display: none;
+}
+
+.displayBlock {
+  display: block;
+}
+
+hr {
+  margin: 1rem 0;
+}
+
+.align-center {
+  align-items: center;
+}
+
+h4 {
+  margin-left: 2rem;
 }

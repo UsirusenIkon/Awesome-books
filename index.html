@@ -12,16 +12,17 @@
   <nav class="nav flex space-btw">
     <div class="logo">Awesome Books</div>
     <ul class="nav-items flex">
-      <li class="items">List</li>
-      <li class="items">Add New</li>
-      <li class="items">Contact</li>
+      <li class="items listBtn">List</li>
+      <li class="items addBtn">Add New</li>
+      <li class="items contactBtn">Contact</li>
     </ul>
   </nav>
   <section class="books">
     <h1>All awesome Books</h1>
-    <div class="bookList"></div>
+    <div class="bookList">
+    </div>
   </section>
-  <section class="add-book">
+  <section class="add-book displayNone">
     <h1>Add A New Book</h1>
     <form class="form flex">
       <label for="Title">
@@ -33,7 +34,7 @@
       <button class="submit" type="button">Add</button>
     </form>
   </section>
-  <section class="contact-me">
+  <section class="contact-me displayNone">
     <h1>Contact Information</h1>
     <p>Do you have any questions or you just want to say 'hello'?<br>You can reach out to us!</p>
     <ul class="contact-items flex">
