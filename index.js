@@ -63,10 +63,13 @@ function displayBook() {
     const title = document.createElement('h3');
     title.innerText = standBook.title;
 
-    const author = document.createElement('h4');
+    const by = document.createElement('h3');
+    by.innerText = 'by';
+
+    const author = document.createElement('h3');
     author.innerText = standBook.author;
 
-    containerTitleAuthor.append(title, author);
+    containerTitleAuthor.append(title, by, author);
 
     const removeBtn = document.createElement('button');
     removeBtn.className = 'removebtn';
