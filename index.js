@@ -1,9 +1,7 @@
-import {updateLocalStorage} from './modules/update_local_storage.js';
+import { updateLocalStorage } from './modules/update_local_storage.js';
 import { getData } from './modules/get_local_storage.js';
-import './modules/page_change.js';
 import { StandardBook } from './modules/creat_book.js';
 import { DateTime } from './modules/luxon.min.js';
-
 
 const bookList = document.querySelector('.bookList');
 const submit = document.querySelector('.submit');
@@ -19,14 +17,17 @@ class StandardBooks {
   constructor() {
     this.books = [];
   }
+
   addBook(title, author) {
     const p = new StandardBook(title, author);
     this.books.push(p);
     return p;
   }
+
   get allBooks() {
     return this.books;
   }
+
   removeBook(index) {
     this.books.splice(index, 1);
   }
@@ -37,12 +38,12 @@ initialBook.addBook('title1', 'author1');
 initialBook.addBook('title2', 'author2');
 initialBook.addBook('title3', 'author3');
 
-let dataStored = getData();
+const dataStored = getData();
 if (dataStored) {
   initialBook.books = dataStored;
 }
 
-let displayBook = () => {
+const displayBook = () => {
   bookList.innerText = '';
   initialBook.allBooks.forEach((standBook) => {
     const containerTAB = document.createElement('div');
@@ -81,7 +82,7 @@ let displayBook = () => {
     });
   });
   updateLocalStorage(initialBook.books);
-}
+};
 displayBook();
 
 submit.addEventListener('click', () => {
@@ -91,4 +92,30 @@ submit.addEventListener('click', () => {
   title.value = '';
   author.value = '';
   displayBook();
+});
+
+const listBtn = document.querySelector('.listBtn');
+const addBtn = document.querySelector('.addBtn');
+const contactBtn = document.querySelector('.contactBtn');
+
+const addBookSection = document.querySelector('.add-book');
+const contactMeSection = document.querySelector('.contact-me');
+const bookListSection = document.querySelector('.books');
+
+addBtn.addEventListener('click', () => {
+  addBookSection.classList.remove('displayNone');
+  contactMeSection.classList.add('displayNone');
+  bookListSection.classList.add('displayNone');
+});
+
+contactBtn.addEventListener('click', () => {
+  addBookSection.classList.add('displayNone');
+  contactMeSection.classList.remove('displayNone');
+  bookListSection.classList.add('displayNone');
+});
+
+listBtn.addEventListener('click', () => {
+  bookListSection.classList.remove('displayNone');
+  contactMeSection.classList.add('displayNone');
+  addBookSection.classList.add('displayNone');
 });
