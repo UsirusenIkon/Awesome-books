@@ -1,31 +1,32 @@
-/* eslint-disable max-classes-per-file */
+import {updateLocalStorage} from './modules/update_local_storage.js';
+import { getData } from './modules/get_local_storage.js';
+import './modules/page_change.js';
+import { StandardBook } from './modules/creat_book.js';
+import { DateTime } from './modules/luxon.min.js';
+
+
 const bookList = document.querySelector('.bookList');
 const submit = document.querySelector('.submit');
 const title = document.querySelector('.title');
 const author = document.querySelector('.author');
 
-class StandardBook {
-  constructor(title, author) {
-    this.title = title;
-    this.author = author;
-  }
-}
+const dateContainer = document.getElementById('date');
+const curentDate = document.createElement('div');
+curentDate.innerText = DateTime.now();
+dateContainer.append(curentDate);
 
 class StandardBooks {
   constructor() {
     this.books = [];
   }
-
   addBook(title, author) {
     const p = new StandardBook(title, author);
     this.books.push(p);
     return p;
   }
-
   get allBooks() {
     return this.books;
   }
-
   removeBook(index) {
     this.books.splice(index, 1);
   }
@@ -36,22 +37,12 @@ initialBook.addBook('title1', 'author1');
 initialBook.addBook('title2', 'author2');
 initialBook.addBook('title3', 'author3');
 
-function getData() {
-  const localdata = localStorage.getItem('localdata');
-  const dataStored = JSON.parse(localdata);
-  if (dataStored) {
-    initialBook.books = dataStored;
-  }
+let dataStored = getData();
+if (dataStored) {
+  initialBook.books = dataStored;
 }
 
-getData();
-
-function updateLocalStorage() {
-  const localdata = JSON.stringify(initialBook.books);
-  localStorage.setItem('localdata', localdata);
-}
-
-function displayBook() {
+let displayBook = () => {
   bookList.innerText = '';
   initialBook.allBooks.forEach((standBook) => {
     const containerTAB = document.createElement('div');
@@ -89,7 +80,7 @@ function displayBook() {
       displayBook();
     });
   });
-  updateLocalStorage();
+  updateLocalStorage(initialBook.books);
 }
 displayBook();
 
@@ -100,32 +91,4 @@ submit.addEventListener('click', () => {
   title.value = '';
   author.value = '';
   displayBook();
-});
-
-// adding stuff
-
-const listBtn = document.querySelector('.listBtn');
-const addBtn = document.querySelector('.addBtn');
-const contactBtn = document.querySelector('.contactBtn');
-
-const addBookSection = document.querySelector('.add-book');
-const contactMeSection = document.querySelector('.contact-me');
-const bookListSection = document.querySelector('.books');
-
-addBtn.addEventListener('click', () => {
-  addBookSection.classList.remove('displayNone');
-  contactMeSection.classList.add('displayNone');
-  bookListSection.classList.add('displayNone');
-});
-
-contactBtn.addEventListener('click', () => {
-  addBookSection.classList.add('displayNone');
-  contactMeSection.classList.remove('displayNone');
-  bookListSection.classList.add('displayNone');
-});
-
-listBtn.addEventListener('click', () => {
-  bookListSection.classList.remove('displayNone');
-  contactMeSection.classList.add('displayNone');
-  addBookSection.classList.add('displayNone');
 });
